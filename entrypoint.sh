@@ -31,7 +31,7 @@ chown builduser:builduser -R $PACKAGE
 
 cd $PACKAGE || exit 1
 
-builder_do "git reset --hard 1214a63"
+builder_do "git reset --hard 78467f5"
 
 for GPG_KEY in "${GPG_KEYS[@]}"
 do
