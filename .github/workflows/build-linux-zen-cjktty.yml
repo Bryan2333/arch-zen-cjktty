@@ -1,0 +1,40 @@
+name: Build linux-zen-cjktty
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'PKGBUILD'
+      - 'entrypoint.sh'
+
+jobs:
+   build-and-release:
+     runs-on: ubuntu-latest
+     steps:
+       - name: Maximize build space
+         uses: easimon/maximize-build-space@master
+         with:
+           root-reserve-mb: 8192
+           swap-size-mb: 16384
+           remove-dotnet: 'true'
+           remove-android: 'true'
+           remove-haskell: 'true'
+           remove-codeql: 'true'
+           remove-docker-images: 'true'
+
+       - name: Checkout
+         uses: actions/checkout@v4
+
+       - name: Build Package
+         run: |
+           docker run -t -v ${{ github.workspace }}:/build archlinux:base-devel /bin/bash /build/entrypoint.sh
+
+       - name: Upload binaries to release
+         uses: softprops/action-gh-release@v2
+         with:
+           files: |
+             ${{ github.workspace }}/*.pkg.tar.*
+             ${{ github.workspace }}/zencjktty*
+           tag_name: packages
+         env:
+           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
