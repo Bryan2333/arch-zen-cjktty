@@ -2,7 +2,7 @@
 
 pkgbase=linux-zen-cjktty
 pkgver=6.8.7.zen1
-pkgrel=1
+pkgrel=2
 pkgdesc='Linux ZEN with cjktty-patches'
 url='https://github.com/zen-kernel/zen-kernel'
 arch=(x86_64)
