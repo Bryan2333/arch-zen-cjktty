@@ -1,7 +1,7 @@
 # Maintainer: Jan Alexander Steffens (heftig) <heftig@archlinux.org>
 
 pkgbase=linux-zen-cjktty
-pkgver=6.8.8.zen1
+pkgver=6.8.9.zen1
 pkgrel=1
 pkgdesc='Linux ZEN with cjktty-patches'
 url='https://github.com/zen-kernel/zen-kernel'
@@ -39,11 +39,11 @@ validpgpkeys=(
   83BC8889351B5DEBBB68416EB8AC08600F108CDF  # Jan Alexander Steffens (heftig)
 )
 # https://www.kernel.org/pub/linux/kernel/v6.x/sha256sums.asc
-sha256sums=('1c4cdcb9d560fad1fb95db2cb8afbedc922f9ead848371fe40363b13f9f631ba'
+sha256sums=('f905f1238ea7a8e85314bacf283302e8097006010d25fcea726d0de0ea5bc9b6'
             'SKIP'
-            'c24fe33b1583287ec9e8c556968b25185045d3ca705ca4d11e4f63f61fcb0d9e'
+            'b973e6efd37d1382b6f3e5eee06437992ff60ec054f3cf13d8cdf05ba8f94cbb'
             'SKIP'
-            '12673c9bb57b4cb7cdb8a544d446a9c635de73e8b724cc3972a311365c56e2df'
+            '89e5dcfd2100da320ac7f7a1951509485e1debcde82ceb61593ec5de6aad8dc0'
             'SKIP'
             'SKIP')
 
@@ -68,8 +68,8 @@ prepare() {
     patch -Np1 < "../$src"
   done
 
-  cp ../config .config
   echo "Setting config..."
+  cp ../config .config
   echo "Setting microarchitecture CONFIG_GENERIC_CPU3..."
   scripts/config --disable CONFIG_GENERIC_CPU
   scripts/config --enable CONFIG_GENERIC_CPU3
