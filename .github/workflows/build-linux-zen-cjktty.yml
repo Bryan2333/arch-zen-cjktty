@@ -27,7 +27,7 @@ jobs:
 
        - name: Build Package
          run: |
-           docker run -t -v ${{ github.workspace }}:/build archlinux:base-devel /bin/bash /build/entrypoint.sh
+           docker run -t -v ${{ github.workspace }}:/build archlinux/archlinux:latest /bin/bash /build/entrypoint.sh
 
        - name: Upload binaries to release
          uses: softprops/action-gh-release@v2
@@ -36,5 +36,6 @@ jobs:
              ${{ github.workspace }}/*.pkg.tar.*
              ${{ github.workspace }}/zencjktty*
            tag_name: packages
+           fail_on_unmatched_files: true
          env:
            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

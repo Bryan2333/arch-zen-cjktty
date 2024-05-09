@@ -3,9 +3,6 @@
 REPO_FILES=('zencjktty.db.tar.xz'
             'zencjktty.files.tar.xz')
 PACKAGE="linux-zen"
-GPG_KEYS=('ABAF11C65A2970B130ABE3C479BE3E4300411886'
-          '647F28654894E3BD457199BE38DBBDC86092693E'
-          '83BC8889351B5DEBBB68416EB8AC08600F108CDF')
         
 function builder_do() {
     sudo -u builduser bash -c "$@"
@@ -14,7 +11,7 @@ function builder_do() {
 pacman-key --init
 pacman-key --populate
 pacman -Syu --noconfirm
-pacman -S --noconfirm --needed wget git llvm clang
+pacman -S --noconfirm --needed base-devel wget git llvm clang
 rm -rf /var/cache/pacman/pkg/*
 
 useradd -m -s /bin/bash builduser
@@ -33,9 +30,9 @@ cd $PACKAGE || exit 1
 
 builder_do "git reset --hard df8fa90"
 
-for GPG_KEY in "${GPG_KEYS[@]}"
-do
-    builder_do "gpg --keyserver hkps://keyserver.ubuntu.com --recv-keys ${GPG_KEY}"
+for KEYFILE in keys/pgp/*.asc
+do 
+    builder_do "gpg --import $KEYFILE"
 done
 
 echo "替换PKGBUILD"
