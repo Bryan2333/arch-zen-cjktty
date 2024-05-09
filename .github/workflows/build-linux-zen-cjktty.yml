@@ -34,7 +34,6 @@ jobs:
          with:
            files: |
              ${{ github.workspace }}/*.pkg.tar.*
-             ${{ github.workspace }}/zencjktty*
            tag_name: packages
            fail_on_unmatched_files: true
          env:

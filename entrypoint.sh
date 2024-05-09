@@ -1,7 +1,5 @@
 #!/bin/bash
 
-REPO_FILES=('zencjktty.db.tar.xz'
-            'zencjktty.files.tar.xz')
 PACKAGE="linux-zen"
         
 function builder_do() {
@@ -41,12 +39,3 @@ builder_do "mv /build/PKGBUILD ./"
 builder_do "env HOME=/home/builduser makepkg -sc --noconfirm"
 
 find ./ -name "*.pkg.tar.*" -exec mv {} /build/ \;
-
-cd /build || exit 1
-
-for REPO_FILE in "${REPO_FILES[@]}"
-do
-    wget --quiet "https://github.com/Bryan2333/arch-zen-cjktty/releases/download/packages/${REPO_FILE}"
-done
-
-repo-add -n zencjktty.db.tar.xz ./*.pkg.tar.*
