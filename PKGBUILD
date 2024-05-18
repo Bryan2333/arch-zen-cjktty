@@ -1,8 +1,8 @@
 # Maintainer: Jan Alexander Steffens (heftig) <heftig@archlinux.org>
 
 pkgbase=linux-zen-cjktty
-pkgver=6.8.9.zen1
-pkgrel=3
+pkgver=6.9.1.zen1
+pkgrel=1
 pkgdesc='Linux ZEN (with cjktty-patches)'
 url='https://github.com/zen-kernel/zen-kernel'
 arch=(x86_64)
@@ -30,7 +30,7 @@ source=(
   https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x/${_srcname}.tar.{xz,sign}
   $url/releases/download/$_srctag/linux-$_srctag.patch.zst{,.sig}
   config  # the main kernel config file
-  "$_cjktty_repo/raw/master/v6.x/cjktty-6.7.patch"
+  "https://github.com/bigshans/cjktty-patches/raw/master/v6.x/cjktty-6.9.patch"
   "$_cjktty_repo/raw/master/cjktty-add-cjk32x32-font-data.patch"
 )
 validpgpkeys=(
@@ -39,13 +39,13 @@ validpgpkeys=(
   83BC8889351B5DEBBB68416EB8AC08600F108CDF  # Jan Alexander Steffens (heftig)
 )
 # https://www.kernel.org/pub/linux/kernel/v6.x/sha256sums.asc
-sha256sums=('f905f1238ea7a8e85314bacf283302e8097006010d25fcea726d0de0ea5bc9b6'
+sha256sums=('01b414ba98fd189ecd544435caf3860ae2a790e3ec48f5aa70fdf42dc4c5c04a'
             'SKIP'
-            'b973e6efd37d1382b6f3e5eee06437992ff60ec054f3cf13d8cdf05ba8f94cbb'
+            '81aac88a48aa565bf16b9e5eb41fed263b940fa8aa246607f97f7b7db56098a4'
             'SKIP'
-            '89e5dcfd2100da320ac7f7a1951509485e1debcde82ceb61593ec5de6aad8dc0'
-            'SKIP'
-            'SKIP')
+            'e3ddbb9f4fe2cc6f578e3316b86ed2a314866c8a8e8b7c95366a32fed3fa83b0'
+            '6714bf3968392e29f19e44514d490ad7ec718c3897003210fd1e499017dd429d'
+            'c648ff21f0a5714743bbae85d6c6e1ed2bf961b6bca976d4c6b4c8d3f6b2739f')
 
 export KBUILD_BUILD_HOST=archlinux
 export KBUILD_BUILD_USER=$pkgbase

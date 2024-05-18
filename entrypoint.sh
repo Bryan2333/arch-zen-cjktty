@@ -26,7 +26,7 @@ chown builduser:builduser -R $PACKAGE
 
 cd $PACKAGE || exit 1
 
-builder_do "git reset --hard df8fa90"
+builder_do "git reset --hard 7d2d881"
 
 for KEYFILE in keys/pgp/*.asc
 do 
