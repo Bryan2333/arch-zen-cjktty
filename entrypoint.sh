@@ -1,7 +1,5 @@
 #!/bin/bash
 
-PACKAGE="linux-zen"
-        
 function builder_do() {
     sudo -u builduser bash -c "$@"
 }
@@ -20,13 +18,13 @@ git config --global --add safe.directory /build
 
 cd /build || exit 1
 
-git clone https://gitlab.archlinux.org/archlinux/packaging/packages/${PACKAGE}.git
+git clone https://gitlab.archlinux.org/archlinux/packaging/packages/linux-zen.git
 
-chown builduser:builduser -R $PACKAGE 
+chown builduser:builduser -R linux-zen
 
-cd $PACKAGE || exit 1
+cd linux-zen || exit 1
 
-builder_do "git reset --hard 7d2d881"
+builder_do "git reset --hard d2b723e"
 
 for KEYFILE in keys/pgp/*.asc
 do 

@@ -2,7 +2,7 @@
 
 pkgbase=linux-zen-cjktty
 pkgver=6.9.1.zen1
-pkgrel=1
+pkgrel=2
 pkgdesc='Linux ZEN (with cjktty-patches)'
 url='https://github.com/zen-kernel/zen-kernel'
 arch=(x86_64)
@@ -23,14 +23,14 @@ options=(
   !strip
 )
 
-_cjktty_repo="https://github.com/zhmars/cjktty-patches"
+_cjktty_repo="https://github.com/bigshans/cjktty-patches"
 _srcname=linux-${pkgver%.*}
 _srctag=v${pkgver%.*}-${pkgver##*.}
 source=(
   https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x/${_srcname}.tar.{xz,sign}
   $url/releases/download/$_srctag/linux-$_srctag.patch.zst{,.sig}
   config  # the main kernel config file
-  "https://github.com/bigshans/cjktty-patches/raw/master/v6.x/cjktty-6.9.patch"
+  "$_cjktty_repo/raw/master/v6.x/cjktty-6.9.patch"
   "$_cjktty_repo/raw/master/cjktty-add-cjk32x32-font-data.patch"
 )
 validpgpkeys=(
@@ -43,7 +43,7 @@ sha256sums=('01b414ba98fd189ecd544435caf3860ae2a790e3ec48f5aa70fdf42dc4c5c04a'
             'SKIP'
             '81aac88a48aa565bf16b9e5eb41fed263b940fa8aa246607f97f7b7db56098a4'
             'SKIP'
-            'e3ddbb9f4fe2cc6f578e3316b86ed2a314866c8a8e8b7c95366a32fed3fa83b0'
+            '1226a05308fd7d7c54afa2026cea36735f5284e08840cdac03a91a212a4e15c3'
             '6714bf3968392e29f19e44514d490ad7ec718c3897003210fd1e499017dd429d'
             'c648ff21f0a5714743bbae85d6c6e1ed2bf961b6bca976d4c6b4c8d3f6b2739f')
 
